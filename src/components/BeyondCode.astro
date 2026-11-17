@@ -1,63 +1,80 @@
 ---
 import { beyondCodePillars } from '../data/beyondCode';
+import { Cpu, Shield, Film, Rocket, Users, Compass, Sparkles } from 'lucide-astro';
 ---
 
-<section id="beyond" class="py-24 px-4 sm:px-6 lg:px-8 relative bg-brand-surface/30">
-  <div class="max-w-7xl mx-auto space-y-16">
+<section id="beyond" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative bg-brand-surface/30">
+  
+  <!-- Subtle Section Divider -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto space-y-12">
+    
     <!-- Header -->
     <div class="reveal-on-scroll max-w-3xl space-y-3">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-card border border-white/10 text-xs font-mono text-brand-orange">
         <span>08</span>
-        <span>//</span>
+        <span class="text-white/30">//</span>
         <span>MULTIDISCIPLINARY PERSPECTIVE</span>
       </div>
-      <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight">
-        Curiosity doesn't stay in one discipline.
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-white tracking-tight">
+        Curiosity doesn't stay in one box.
       </h2>
+
       <p class="text-brand-muted text-base sm:text-lg leading-relaxed">
-        True innovation lives where disciplines intersect. How computer networks, defensive cybersecurity, visual storytelling, and entrepreneurial initiative inform my approach.
+        True innovation lives where disciplines cross. How network protocols, defensive cybersecurity, visual storytelling, and entrepreneurship cross-pollinate.
       </p>
     </div>
 
-    <!-- Pillars Grid -->
+    <!-- 6 Pillars Bento Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         beyondCodePillars.map((pillar, idx) => (
           <div
-            class={`reveal-on-scroll glass-card rounded-2xl p-6 sm:p-7 space-y-4 flex flex-col justify-between transition-all duration-300 ${
+            class={`reveal-on-scroll glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 transition-all duration-300 ${
               pillar.accent === 'orange' ? 'glass-card-hover-orange' : 'glass-card-hover'
             }`}
-            style={`transition-delay: ${idx * 80}ms;`}
+            style={`transition-delay: ${idx * 75}ms;`}
           >
             <div class="space-y-3">
               <div class="flex items-center justify-between">
                 <span
-                  class={`text-[10px] font-mono uppercase px-2.5 py-1 rounded tracking-wider ${
+                  class={`text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full border ${
                     pillar.accent === 'orange'
-                      ? 'bg-brand-orange/15 text-brand-orange border border-brand-orange/30'
-                      : 'bg-brand-blue/15 text-brand-blue border border-brand-blue/30'
+                      ? 'bg-brand-orange/15 text-brand-orange border-brand-orange/30'
+                      : 'bg-brand-blue/15 text-brand-blue border-brand-blue/30'
                   }`}
                 >
                   {pillar.theme}
                 </span>
-                <span class="text-xs font-mono text-brand-muted">0{idx + 1}</span>
+
+                <div class="p-1.5 rounded-lg bg-brand-surface border border-white/5">
+                  {pillar.icon === 'Cpu' && <Cpu class="w-3.5 h-3.5 text-brand-blue" />}
+                  {pillar.icon === 'Shield' && <Shield class="w-3.5 h-3.5 text-brand-blue" />}
+                  {pillar.icon === 'Film' && <Film class="w-3.5 h-3.5 text-brand-orange" />}
+                  {pillar.icon === 'Rocket' && <Rocket class="w-3.5 h-3.5 text-brand-orange" />}
+                  {pillar.icon === 'Users' && <Users class="w-3.5 h-3.5 text-brand-cyan" />}
+                  {pillar.icon === 'Compass' && <Compass class="w-3.5 h-3.5 text-brand-orange" />}
+                </div>
               </div>
 
-              <h3 class="text-xl font-bold font-display text-white">
+              <h3 class="text-lg font-bold font-display text-white">
                 {pillar.title}
               </h3>
 
-              <p class="text-xs sm:text-sm text-white/90 font-medium leading-relaxed">
+              <p class="text-xs sm:text-sm text-white/95 font-medium leading-relaxed italic">
                 "{pillar.statement}"
               </p>
             </div>
 
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed pt-3 border-t border-white/5">
+            <p class="text-xs text-brand-muted leading-relaxed pt-3 border-t border-white/5">
               {pillar.details}
             </p>
           </div>
         ))
       }
     </div>
+
   </div>
 </section>

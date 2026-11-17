@@ -1,0 +1,232 @@
+---
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = 'w-4 h-4' } = Astro.props;
+
+// Normalize name
+const n = name.toLowerCase().trim();
+---
+
+{
+  /* Python */
+  (n === 'python' || n.includes('python')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.006 2.752h5.814v.826H3.94S0 5.79 0 11.94c0 6.14 3.44 5.922 3.44 5.922h2.053v-2.882s-.11-3.44 3.385-3.44h5.787v-.853h-5.787c-3.14 0-3.358-2.723-3.358-2.723V4.992c0-2.482 2.828-2.482 2.828-2.482h4.568c2.61 0 2.61 2.373 2.61 2.373v1.854h-2.828v.826h5.65v-.826s.463-2.61-2.583-2.61l-.001-2.31S17.433 0 11.914 0zM8.73 1.745a.98.98 0 1 1 0 1.96.98.98 0 0 1 0-1.96zm3.356 10.428v.854h5.787c3.14 0 3.358 2.723 3.358 2.723v3.913c0 2.482-2.828 2.482-2.828 2.482h-4.568c-2.61 0-2.61-2.373-2.61-2.373v-1.854h2.828v-.826H8.384v.826s-.463 2.61 2.583 2.61l.001 2.31s-1.424 1.764 4.095 1.764c6.094 0 5.714-2.656 5.714-2.656l-.006-2.752h-5.814v-.826h8.08s3.94.444 3.94-5.706c0-6.14-3.44-5.922-3.44-5.922h-2.053v2.882s.11 3.44-3.385 3.44h-5.787zm3.184 10.082a.98.98 0 1 1 0-1.96.98.98 0 0 1 0 1.96z" fill="#4285FF"/>
+    </svg>
+  )
+}
+
+{
+  /* TypeScript */
+  (n === 'typescript' || n === 'ts') && (
+    <svg class={className} viewBox="0 0 24 24" fill="currentColor">
+      <rect width="24" height="24" rx="4" fill="#3178C6"/>
+      <path d="M1.5 1.5h21v21h-21z" fill="none"/>
+      <path d="M12.9 14.5c.4.8 1 1.4 1.9 1.4 1 0 1.6-.5 1.6-1.5 0-2.3-5-2-5-5.6 0-2 1.6-3.6 4.1-3.6 1.7 0 3 .6 3.8 1.9l-1.8 1.1c-.4-.7-.9-1-1.8-1-.9 0-1.5.5-1.5 1.2 0 2.2 5 1.8 5 5.7 0 2.3-1.8 3.8-4.4 3.8-2.2 0-3.7-.9-4.5-2.4l1.7-1zm-6.7-7.3h8.3v2h-3v8.6h-2.3v-8.6h-3v-2z" fill="#FFFFFF"/>
+    </svg>
+  )
+}
+
+{
+  /* JavaScript */
+  (n === 'javascript' || n === 'js') && (
+    <svg class={className} viewBox="0 0 24 24" fill="currentColor">
+      <rect width="24" height="24" rx="4" fill="#F7DF1E"/>
+      <path d="M1.5 1.5h21v21h-21z" fill="none"/>
+      <path d="M7.7 18.5c-1.3 0-2.2-.6-2.7-1.4l1.7-1.1c.3.5.7.8 1.1.8.6 0 1-.3 1-1.2V9.8h2.3v5.8c0 2-1.2 2.9-3.4 2.9zm8.5 0c-2.4 0-4-1.4-4.7-2.9l1.9-1.1c.5 1 1.4 1.8 2.7 1.8 1.2 0 1.9-.6 1.9-1.4 0-1-1-1.3-2.6-1.9-2.1-.8-3.5-1.7-3.5-3.8 0-1.9 1.5-3.3 3.8-3.3 1.7 0 3 .7 3.8 2l-1.7 1.1c-.4-.8-1-1.2-2-1.2-.9 0-1.5.5-1.5 1.2 0 .8.7 1.1 2.2 1.7 2.4.9 3.9 1.8 3.9 4 0 2.2-1.7 3.8-4.2 3.8z" fill="#000000"/>
+    </svg>
+  )
+}
+
+{
+  /* React */
+  (n === 'react' || n.includes('react')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="1.5">
+      <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(0 12 12)"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>
+      <circle cx="12" cy="12" r="2" fill="#61DAFB"/>
+    </svg>
+  )
+}
+
+{
+  /* Node.js / Express */
+  (n.includes('node') || n.includes('express')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="#68A063">
+      <path d="M12 2l9.5 5.5v11L12 24l-9.5-5.5v-11L12 2zm0 2.3L4.5 8.6v6.8L12 19.7l7.5-4.3V8.6L12 4.3zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+    </svg>
+  )
+}
+
+{
+  /* Astro */
+  (n === 'astro' || n.includes('astro')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="none">
+      <path d="M8.5 18.5c-.8-1.5-1.5-3.8-1.5-6.5C7 6.5 12 2 12 2s5 4.5 5 10c0 2.7-.7 5-1.5 6.5" stroke="#FF5D01" stroke-width="2" stroke-linecap="round"/>
+      <path d="M9 13.5h6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="18.5" r="2" fill="#FF5D01"/>
+    </svg>
+  )
+}
+
+{
+  /* Linux / Ubuntu */
+  (n.includes('linux') || n.includes('ubuntu') || n.includes('bash')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="#E95420" stroke-width="1.5">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="12" cy="6" r="1.8" fill="#E95420"/>
+      <circle cx="6.8" cy="15" r="1.8" fill="#E95420"/>
+      <circle cx="17.2" cy="15" r="1.8" fill="#E95420"/>
+      <path d="M12 9v6M9 13.5l6-3"/>
+    </svg>
+  )
+}
+
+{
+  /* Docker */
+  (n === 'docker' || n.includes('docker')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="#2496ED">
+      <rect x="2" y="9" width="3" height="3" rx="0.5"/>
+      <rect x="6" y="9" width="3" height="3" rx="0.5"/>
+      <rect x="10" y="9" width="3" height="3" rx="0.5"/>
+      <rect x="6" y="5.5" width="3" height="3" rx="0.5"/>
+      <rect x="10" y="5.5" width="3" height="3" rx="0.5"/>
+      <rect x="14" y="9" width="3" height="3" rx="0.5"/>
+      <rect x="14" y="5.5" width="3" height="3" rx="0.5"/>
+      <path d="M22 12c-.5-1.5-2-2.5-3.5-2.2-.5-1.2-1.8-2-3.1-1.8-1 0-1.8.5-2.4 1.2H1c-.6 0-1 .4-1 1 0 4.5 3.5 8 9.5 8 7 0 10.5-3.8 11.8-5.5.3-.2.5-.4.7-.7z"/>
+    </svg>
+  )
+}
+
+{
+  /* PostgreSQL / Database / SQLite */
+  (n.includes('postgres') || n.includes('sql') || n.includes('database')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="#336791" stroke-width="1.8">
+      <ellipse cx="12" cy="5" rx="8" ry="3"/>
+      <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
+      <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/>
+    </svg>
+  )
+}
+
+{
+  /* Cisco / Networks / Routing */
+  (n.includes('cisco') || n.includes('network') || n.includes('tcp') || n.includes('osi') || n.includes('routing')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="#4285FF" stroke-width="1.7">
+      <rect x="2" y="6" width="6" height="4" rx="1"/>
+      <rect x="16" y="6" width="6" height="4" rx="1"/>
+      <rect x="9" y="14" width="6" height="4" rx="1"/>
+      <path d="M5 10v2a2 2 0 0 0 2 2h5m7-4v2a2 2 0 0 1-2 2h-5m0 0v-2"/>
+      <circle cx="12" cy="14" r="1" fill="#4285FF"/>
+    </svg>
+  )
+}
+
+{
+  /* Cybersecurity / Nmap / Wireshark / Security */
+  (n.includes('security') || n.includes('cyber') || n.includes('wireshark') || n.includes('nmap') || n.includes('hash') || n.includes('crypto')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8">
+      <path d="M12 2L4 5v6.5C4 17 7.5 21 12 22c4.5-1 8-5 8-10.5V5l-8-3z"/>
+      <path d="M9 12l2 2 4-4"/>
+    </svg>
+  )
+}
+
+{
+  /* Adobe Premiere Pro / Video Editing */
+  (n.includes('premiere') || n.includes('video editing')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="currentColor">
+      <rect width="24" height="24" rx="4" fill="#00005B"/>
+      <path d="M6 6h4.5c2.2 0 3.8 1.4 3.8 3.5 0 2.2-1.6 3.5-3.8 3.5H8.2v5H6V6zm2.2 5h2.1c1.1 0 1.8-.7 1.8-1.5s-.7-1.5-1.8-1.5H8.2v3zm7 7h-2.1v-7.8h2.1v1.2c.4-.8 1.4-1.4 2.4-1.4.3 0 .6.05.9.15v2.2c-.3-.1-.7-.15-1.1-.15-1.3 0-2.2.9-2.2 2.5V18z" fill="#9999FF"/>
+    </svg>
+  )
+}
+
+{
+  /* Adobe Photoshop */
+  n.includes('photoshop') && (
+    <svg class={className} viewBox="0 0 24 24" fill="currentColor">
+      <rect width="24" height="24" rx="4" fill="#001E36"/>
+      <path d="M6 6h4.5c2.2 0 3.8 1.4 3.8 3.5 0 2.2-1.6 3.5-3.8 3.5H8.2v5H6V6zm2.2 5h2.1c1.1 0 1.8-.7 1.8-1.5s-.7-1.5-1.8-1.5H8.2v3zm7.8 2.5c.3.5.7.8 1.3.8.7 0 1.1-.4 1.1-.9 0-1.2-3.2-1.1-3.2-3.4 0-1.4 1.2-2.5 3-2.5 1.2 0 2.2.5 2.7 1.4l-1.4.9c-.3-.5-.7-.7-1.3-.7-.6 0-1 .4-1 .9 0 1.2 3.2 1 3.2 3.4 0 1.5-1.2 2.6-3.1 2.6-1.5 0-2.6-.6-3.1-1.7l1.4-.8z" fill="#31A8FF"/>
+    </svg>
+  )
+}
+
+{
+  /* DaVinci Resolve */
+  n.includes('davinci') && (
+    <svg class={className} viewBox="0 0 24 24" fill="none">
+      <rect width="24" height="24" rx="4" fill="#181824"/>
+      <circle cx="9" cy="9" r="4" fill="#FF4444" opacity="0.85"/>
+      <circle cx="15" cy="9" r="4" fill="#4488FF" opacity="0.85"/>
+      <circle cx="12" cy="15" r="4" fill="#FFB703" opacity="0.85"/>
+    </svg>
+  )
+}
+
+{
+  /* C# / .NET */
+  (n.includes('c#') || n.includes('.net')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="#239120" stroke-width="1.8">
+      <rect x="2" y="2" width="20" height="20" rx="4"/>
+      <path d="M9 15a4 4 0 1 1 0-6M15 8v8M18 8v8M13 11h7M13 13h7"/>
+    </svg>
+  )
+}
+
+{
+  /* Git / GitHub */
+  (n.includes('git') || n.includes('github')) && (
+    <svg class={className} viewBox="0 0 24 24" fill="#F05032">
+      <path d="M21.6 10.9L13.1 2.4a2.4 2.4 0 0 0-3.4 0L7.3 4.8l3.4 3.4a2.4 2.4 0 0 1 3.1 3.1l3.3 3.3a2.4 2.4 0 1 1-1.7 1.7l-3.2-3.2v4.8a2.4 2.4 0 1 1-2.4 0V11a2.4 2.4 0 0 1-1.3-3.1L5 5.5 2.4 8.1a2.4 2.4 0 0 0 0 3.4l8.5 8.5a2.4 2.4 0 0 0 3.4 0l7.3-7.3a2.4 2.4 0 0 0 0-3.4z"/>
+    </svg>
+  )
+}
+
+{
+  /* Cloudflare / Render / Web / Default fallback */
+  !n.includes('python') &&
+    !n.includes('ts') &&
+    !n.includes('typescript') &&
+    !n.includes('js') &&
+    !n.includes('javascript') &&
+    !n.includes('react') &&
+    !n.includes('node') &&
+    !n.includes('express') &&
+    !n.includes('astro') &&
+    !n.includes('linux') &&
+    !n.includes('ubuntu') &&
+    !n.includes('bash') &&
+    !n.includes('docker') &&
+    !n.includes('postgres') &&
+    !n.includes('sql') &&
+    !n.includes('database') &&
+    !n.includes('cisco') &&
+    !n.includes('network') &&
+    !n.includes('tcp') &&
+    !n.includes('osi') &&
+    !n.includes('routing') &&
+    !n.includes('security') &&
+    !n.includes('cyber') &&
+    !n.includes('wireshark') &&
+    !n.includes('nmap') &&
+    !n.includes('hash') &&
+    !n.includes('crypto') &&
+    !n.includes('premiere') &&
+    !n.includes('video editing') &&
+    !n.includes('photoshop') &&
+    !n.includes('davinci') &&
+    !n.includes('c#') &&
+    !n.includes('.net') &&
+    !n.includes('git') &&
+    !n.includes('github') && (
+      <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    )
+}

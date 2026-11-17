@@ -1,5 +1,6 @@
 ---
 import type { MediaItem } from '../data/media';
+import { Play, ExternalLink, Film, ArrowUpRight, CheckCircle2 } from 'lucide-astro';
 
 interface Props {
   item: MediaItem;
@@ -9,11 +10,11 @@ const { item } = Astro.props;
 ---
 
 <div
-  class="reveal-on-scroll glass-card rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-2xl group"
+  class="reveal-on-scroll glass-card rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange/45 hover:shadow-glow-orange/20 group"
   data-media-category={item.category}
 >
-  <!-- Thumbnail & Play Preview -->
   <div>
+    <!-- Cinematic Video Preview Frame -->
     <div class="relative aspect-video w-full overflow-hidden bg-brand-surface border-b border-white/10 group-hover:shadow-glow-orange/20">
       <img
         src={item.thumbnail}
@@ -21,23 +22,39 @@ const { item } = Astro.props;
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-black/30 to-transparent"></div>
+      <!-- Vignette and Dark Gradient Overlays -->
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-black/30 to-black/20 pointer-events-none"></div>
 
-      <!-- Platform Pill -->
-      <div class="absolute top-3 left-3">
-        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-brand-bg/90 text-white border border-white/10 backdrop-blur-sm">
-          {item.platform}
+      <!-- Top Left: Platform Pill with Icon -->
+      <div class="absolute top-3 left-3 flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold bg-black/75 text-white border border-white/15 backdrop-blur-md">
+          {item.platform === 'YouTube' && (
+            <svg class="w-3 h-3 text-red-500 fill-current" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          )}
+          {item.platform === 'TikTok' && (
+            <svg class="w-3 h-3 text-cyan-400 fill-current" viewBox="0 0 24 24">
+              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.16 1.19 2.09 2.37 2.26.96.16 1.98-.07 2.75-.68.6-.47.99-1.16 1.09-1.91.07-1.11.03-2.23.03-3.35V.02h-.03z"/>
+            </svg>
+          )}
+          {item.platform === 'Facebook' && (
+            <svg class="w-3 h-3 text-blue-500 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          )}
+          <span>{item.platform}</span>
         </span>
       </div>
 
-      <!-- Category Pill -->
+      <!-- Top Right: Category Pill -->
       <div class="absolute top-3 right-3">
-        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-brand-orange/20 text-brand-orange border border-brand-orange/40 backdrop-blur-sm">
+        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-brand-orange/20 text-brand-orange border border-brand-orange/40 backdrop-blur-md">
           {item.category}
         </span>
       </div>
 
-      <!-- Play Button Overlay (for video items with videoId) -->
+      <!-- Play Button Overlay for Videos with videoId -->
       {
         item.videoId ? (
           <button
@@ -45,13 +62,11 @@ const { item } = Astro.props;
             data-play-video
             data-video-id={item.videoId}
             data-video-title={item.title}
-            aria-label={`Play preview of ${item.title}`}
-            class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 focus:outline-none"
+            aria-label={`Play video preview of ${item.title}`}
+            class="absolute inset-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 focus:outline-none"
           >
-            <div class="w-12 h-12 rounded-full bg-brand-orange text-brand-bg flex items-center justify-center shadow-glow-orange pl-0.5">
-              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"></path>
-              </svg>
+            <div class="w-12 h-12 rounded-full bg-brand-orange text-brand-bg flex items-center justify-center shadow-glow-orange pl-0.5 transition-transform group-hover:scale-110">
+              <Play class="w-5 h-5 fill-current" />
             </div>
           </button>
         ) : null
@@ -60,33 +75,34 @@ const { item } = Astro.props;
 
     <!-- Details Content -->
     <div class="p-6 space-y-3">
-      <h3 class="text-lg font-bold font-display text-white group-hover:text-brand-orange transition-colors">
-        {item.title}
-      </h3>
-
-      <!-- Channel Name -->
-      <p class="text-xs font-mono text-brand-orange/90 font-medium">
-        Reference: {item.channelOrProject}
-      </p>
-
-      <!-- Editable Contribution Field Highlight -->
-      <div class="rounded-lg bg-brand-surface/70 border border-white/5 p-2.5 space-y-1">
-        <span class="text-[10px] font-mono uppercase text-brand-muted tracking-wider block">
-          Role / Contribution:
-        </span>
-        <span class="text-xs font-medium text-white/95">
-          {item.contribution}
-        </span>
+      <div>
+        <h3 class="text-lg font-bold font-display text-white group-hover:text-brand-orange transition-colors">
+          {item.title}
+        </h3>
+        <p class="text-xs font-mono text-brand-orange/90 font-medium mt-0.5">
+          {item.channelOrProject}
+        </p>
       </div>
 
-      <p class="text-sm text-brand-muted leading-relaxed line-clamp-3">
+      <!-- Editable Contribution Field Highlight -->
+      <div class="rounded-xl bg-brand-surface/80 border border-white/10 p-2.5 space-y-1">
+        <span class="text-[10px] font-mono uppercase text-brand-muted tracking-wider block">
+          Role &amp; Contribution:
+        </span>
+        <p class="text-xs font-medium text-white/95 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+          <span>{item.contribution}</span>
+        </p>
+      </div>
+
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed line-clamp-3">
         {item.description}
       </p>
 
       <!-- Media Tags -->
       <div class="flex flex-wrap gap-1.5 pt-2">
         {item.tags.map((tag) => (
-          <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-brand-surface text-brand-muted border border-white/5">
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-surface text-brand-muted border border-white/5">
             {tag}
           </span>
         ))}
@@ -103,15 +119,20 @@ const { item } = Astro.props;
       class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-orange hover:text-white transition-colors"
     >
       <span>Open on {item.platform}</span>
-      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-      </svg>
+      <ExternalLink class="w-3.5 h-3.5" />
     </a>
 
     {item.videoId && (
-      <span class="text-[10px] font-mono text-brand-muted">
-        Modal Preview Available
-      </span>
+      <button
+        type="button"
+        data-play-video
+        data-video-id={item.videoId}
+        data-video-title={item.title}
+        class="text-[10px] font-mono text-brand-muted hover:text-white flex items-center gap-1 transition-colors"
+      >
+        <Play class="w-2.5 h-2.5 text-brand-orange fill-brand-orange" />
+        <span>Watch In Modal</span>
+      </button>
     )}
   </div>
 </div>

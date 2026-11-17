@@ -1,120 +1,258 @@
 ---
 import { profile } from '../data/profile';
 import { socialLinks } from '../data/social';
-
-const tags = [
-  { label: 'Software Development', type: 'tech' },
-  { label: 'Computer Networks', type: 'tech' },
-  { label: 'Cybersecurity', type: 'tech' },
-  { label: 'Digital Media', type: 'creative' },
-];
+import { ArrowUpRight, Play, Terminal, Shield, Network, Film, Activity, Cpu, Radio, Github, Linkedin, ExternalLink } from 'lucide-astro';
 ---
 
-<section class="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-grid-pattern">
+<section class="relative min-h-[92vh] lg:min-h-screen lg:max-h-[980px] flex items-center justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-grid-pattern">
   <!-- Interactive Canvas Background -->
   <div class="absolute inset-0 z-0 pointer-events-auto opacity-75">
     <canvas id="hero-canvas" class="w-full h-full block"></canvas>
   </div>
 
   <!-- Radial gradient atmospheric glow -->
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-gradient-to-tr from-brand-blue/15 via-transparent to-brand-orange/15 blur-[120px] pointer-events-none -z-10"></div>
+  <div class="absolute top-1/4 left-1/3 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-brand-blue/15 via-transparent to-brand-orange/15 blur-[140px] pointer-events-none -z-10"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[350px] bg-gradient-to-bl from-brand-orange/10 via-transparent to-brand-blue/10 blur-[130px] pointer-events-none -z-10"></div>
 
-  <!-- Hero Content -->
-  <div class="relative z-10 max-w-5xl mx-auto text-center space-y-8">
-    <!-- Availability & Status Badge -->
-    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-surface/80 border border-white/10 backdrop-blur-md shadow-card-subtle animate-float-slow">
-      <span class="relative flex h-2.5 w-2.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-      </span>
-      <span class="text-xs font-mono font-medium text-brand-muted tracking-wide">
-        {profile.availability.text}
-      </span>
-    </div>
-
-    <!-- Editorial Headline -->
-    <div class="space-y-4 max-w-4xl mx-auto">
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-[1.1] text-white">
-        Building at the intersection of <br class="hidden sm:inline" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-sky-300 to-brand-blue">Technology</span>
-        <span class="text-white/40 font-light mx-2">&amp;</span>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-300 to-brand-orange">Creativity</span>.
-      </h1>
-
-      <p class="text-base sm:text-lg lg:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed font-normal">
-        {profile.heroDescription}
-      </p>
-    </div>
-
-    <!-- Professional Focus Tags -->
-    <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
-      {
-        tags.map((tag) => (
-          <span
-            class={`px-3 py-1 rounded-full text-xs font-medium border backdrop-blur-sm transition-transform hover:scale-105 ${
-              tag.type === 'tech'
-                ? 'bg-brand-blue/10 border-brand-blue/30 text-blue-300'
-                : 'bg-brand-orange/10 border-brand-orange/30 text-orange-300'
-            }`}
-          >
-            {tag.label}
+  <!-- Main Hero Grid Container -->
+  <div class="relative z-10 max-w-7xl mx-auto w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      
+      <!-- Left Column: Primary Narrative & Action (7 cols) -->
+      <div class="lg:col-span-7 space-y-6 text-left">
+        
+        <!-- Availability & Current Role Beacon -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-surface/90 border border-emerald-500/30 backdrop-blur-md shadow-card-subtle">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-        ))
-      }
-    </div>
+          <span class="text-xs font-mono font-medium text-white/90 tracking-wide">
+            {profile.availability.text}
+          </span>
+          <span class="hidden sm:inline-block text-[11px] font-mono text-brand-muted pl-1 border-l border-white/10">
+            Plymouth / NSBM
+          </span>
+        </div>
 
-    <!-- Primary CTAs -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-      <a
-        href="#projects"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white font-semibold text-sm shadow-glow-blue hover:shadow-xl transition-all duration-300 group"
-      >
-        <span>Explore My Work</span>
-        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-        </svg>
-      </a>
+        <!-- Expressive Typography -->
+        <div class="space-y-4 max-w-3xl">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold font-display tracking-tight leading-[1.08] text-white">
+            Building at the intersection of <br class="hidden sm:inline" />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-sky-300 to-blue-400">Technology</span>
+            <span class="text-white/30 font-light mx-2">&amp;</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-300 to-orange-400">Creativity</span>.
+          </h1>
 
-      <a
-        href="#contact"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-surface/90 hover:bg-brand-elevated border border-white/10 hover:border-brand-orange/40 text-brand-text font-medium text-sm transition-all duration-300 shadow-card-subtle"
-      >
-        <span>Connect With Me</span>
-        <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-        </svg>
-      </a>
-    </div>
+          <p class="text-base sm:text-lg text-brand-muted max-w-2xl leading-relaxed font-normal">
+            I'm <span class="text-white font-medium">Pawara Kaveesha</span> — a Computer Networks undergraduate, software developer, and digital creator engineering network solutions and directing digital media.
+          </p>
+        </div>
 
-    <!-- Interactive Terminal & Creative Timeline Micro-Card -->
-    <div class="pt-8 max-w-2xl mx-auto">
-      <div class="glass-card rounded-2xl p-4 sm:p-5 text-left font-mono text-xs shadow-2xl relative overflow-hidden group">
-        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-            <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-            <span class="ml-2 text-brand-muted text-[11px]">pawara@sys-node:~</span>
+        <!-- Compact Key Highlights / Telemetry Metrics Bar -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 py-1">
+          <div class="p-2.5 rounded-xl bg-brand-surface/80 border border-white/10 backdrop-blur-sm">
+            <div class="flex items-center gap-1.5 text-brand-blue text-xs font-mono font-bold">
+              <Network class="w-3.5 h-3.5" />
+              <span>B.Sc (Hons)</span>
+            </div>
+            <p class="text-[11px] text-brand-muted font-sans mt-0.5">Computer Networks</p>
           </div>
-          <div class="flex items-center gap-3 text-[11px] text-brand-muted">
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></span> NetSec Engine</span>
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-orange"></span> Media Timeline</span>
+
+          <div class="p-2.5 rounded-xl bg-brand-surface/80 border border-white/10 backdrop-blur-sm">
+            <div class="flex items-center gap-1.5 text-brand-blue text-xs font-mono font-bold">
+              <Terminal class="w-3.5 h-3.5" />
+              <span>8+ Projects</span>
+            </div>
+            <p class="text-[11px] text-brand-muted font-sans mt-0.5">Full-Stack &amp; Python</p>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-brand-surface/80 border border-brand-orange/30 backdrop-blur-sm">
+            <div class="flex items-center gap-1.5 text-brand-orange text-xs font-mono font-bold">
+              <Film class="w-3.5 h-3.5" />
+              <span>Broadcast</span>
+            </div>
+            <p class="text-[11px] text-brand-muted font-sans mt-0.5">Channel 19 &amp; Podcasts</p>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-brand-surface/80 border border-white/10 backdrop-blur-sm">
+            <div class="flex items-center gap-1.5 text-brand-cyan text-xs font-mono font-bold">
+              <Shield class="w-3.5 h-3.5" />
+              <span>Duothan 6.0</span>
+            </div>
+            <p class="text-[11px] text-brand-muted font-sans mt-0.5">Finance Leadership</p>
           </div>
         </div>
 
-        <div class="space-y-1.5 text-brand-muted">
-          <p><span class="text-brand-blue font-semibold">sys.init()</span>: Loading multidisciplinary modules...</p>
-          <p class="text-white/80">
-            <span class="text-emerald-400">✓</span> Computer Networks <span class="text-brand-muted">:: B.Sc (Hons) Plymouth / NSBM</span>
-          </p>
-          <p class="text-white/80">
-            <span class="text-emerald-400">✓</span> Software &amp; Security <span class="text-brand-muted">:: Python, React, Automation &amp; Cryptography</span>
-          </p>
-          <p class="text-white/80">
-            <span class="text-brand-orange">✓</span> Creative Production <span class="text-brand-muted">:: Video Editing, Premiere Pro, Channel 19 &amp; Digital Media</span>
-          </p>
+        <!-- Primary Action CTAs -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a
+            href="#projects"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-semibold text-sm shadow-glow-blue hover:shadow-xl transition-all duration-200 active:scale-95 group"
+          >
+            <span>Explore Projects</span>
+            <ArrowUpRight class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+
+          <a
+            href="#media"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-surface/90 hover:bg-brand-elevated border border-brand-orange/40 text-brand-text font-medium text-sm transition-all duration-200 shadow-card-subtle group hover:border-brand-orange hover:shadow-glow-orange/30"
+          >
+            <Play class="w-3.5 h-3.5 text-brand-orange fill-brand-orange/40 group-hover:fill-brand-orange transition-colors" />
+            <span>View Media Work</span>
+          </a>
+
+          <div class="flex items-center gap-2 pl-1">
+            <a
+              href={socialLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              class="p-3 rounded-xl bg-brand-surface/80 hover:bg-brand-elevated border border-white/10 hover:border-white/30 text-brand-muted hover:text-white transition-all shadow-card-subtle"
+            >
+              <Github class="w-4 h-4" />
+            </a>
+
+            <a
+              href={socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              class="p-3 rounded-xl bg-brand-surface/80 hover:bg-brand-elevated border border-white/10 hover:border-brand-blue/50 text-brand-muted hover:text-brand-blue transition-all shadow-card-subtle"
+            >
+              <Linkedin class="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Current Focus Indicator -->
+        <div class="pt-2 text-xs font-mono text-brand-muted flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span>
+          <span>Current Focus:</span>
+          <span class="text-white/80">Network Security Automation Platform &amp; Python Labs</span>
         </div>
       </div>
+
+      <!-- Right Column: Abstract 3D-Style Multidisciplinary Cockpit (5 cols) -->
+      <div class="lg:col-span-5 relative">
+        
+        <!-- Ambient Underglow -->
+        <div class="absolute -inset-2 bg-gradient-to-tr from-brand-blue/20 via-sky-500/10 to-brand-orange/20 rounded-3xl blur-2xl -z-10 pointer-events-none"></div>
+
+        <!-- Floating Satellite Badge 1 (Top-Right) -->
+        <div class="hidden sm:flex absolute -top-4 -right-2 z-20 items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-surface/95 border border-brand-orange/40 text-[11px] font-mono text-orange-300 shadow-glow-orange/30 backdrop-blur-md animate-float-slow">
+          <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+          <span>REC ● 4K 60fps</span>
+        </div>
+
+        <!-- Floating Satellite Badge 2 (Bottom-Left) -->
+        <div class="hidden sm:flex absolute -bottom-4 -left-3 z-20 items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-surface/95 border border-brand-blue/40 text-[11px] font-mono text-blue-300 shadow-glow-blue/30 backdrop-blur-md animate-float-reverse">
+          <Shield class="w-3.5 h-3.5 text-brand-blue" />
+          <span>SHA-256 :: SALT VERIFIED</span>
+        </div>
+
+        <!-- Main Glass Cockpit Frame -->
+        <div class="glass-card-elevated rounded-2xl overflow-hidden shadow-mockup-depth border border-white/15 transition-all duration-300 hover:border-brand-blue/40">
+          
+          <!-- Cockpit Header / Titlebar -->
+          <div class="px-4 py-3 bg-brand-surface/90 border-b border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+              <span class="ml-2 font-mono text-xs text-brand-muted">pawara@core-node:~</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span class="text-[10px] font-mono text-emerald-400">LATENCY 0.8ms</span>
+            </div>
+          </div>
+
+          <!-- Upper Tier: Network & Systems Telemetry -->
+          <div class="p-5 space-y-3 font-mono text-xs border-b border-white/5 bg-brand-bg/50">
+            <div class="flex items-center justify-between text-[11px] text-brand-blue font-semibold">
+              <div class="flex items-center gap-1.5">
+                <Network class="w-3.5 h-3.5 text-brand-blue" />
+                <span>NET_SECURITY_AUDIT_ENGINE</span>
+              </div>
+              <span class="px-1.5 py-0.5 rounded bg-brand-blue/15 text-brand-blue border border-brand-blue/30 text-[10px]">
+                ACTIVE
+              </span>
+            </div>
+
+            <div class="space-y-1 text-brand-muted leading-relaxed">
+              <p class="text-white/90">
+                <span class="text-brand-blue">❯</span> python3 -m netsec.audit --target 192.168.10.0/24
+              </p>
+              <p class="text-emerald-400">
+                [OK] Interface eth0 bound: 10.0.4.1/24 (VLAN 10 Trunk)
+              </p>
+              <p class="text-white/70">
+                [SCAN] Probing open ports &amp; listening services [SYN mode]
+              </p>
+              <div class="flex items-center gap-2 pt-1 text-[11px]">
+                <span class="text-brand-cyan">Hash Verifier:</span>
+                <span class="px-1.5 py-0.2 rounded bg-brand-surface border border-white/10 text-white/90 font-mono text-[10px]">
+                  e3b0c44298fc1c149afbf4c8996fb9242...
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mid Tier: Creative Media Studio Deck -->
+          <div class="p-5 space-y-3 bg-brand-surface/40">
+            <div class="flex items-center justify-between text-[11px]">
+              <div class="flex items-center gap-1.5 text-brand-orange font-semibold font-mono">
+                <Film class="w-3.5 h-3.5 text-brand-orange" />
+                <span>STUDIO TIMELINE // CHANNEL 19</span>
+              </div>
+              <!-- Equalizer Audio Waveform -->
+              <div class="flex items-end gap-1 h-4">
+                <span class="w-1 bg-brand-orange rounded-full animate-eq-1"></span>
+                <span class="w-1 bg-amber-400 rounded-full animate-eq-2"></span>
+                <span class="w-1 bg-brand-orange rounded-full animate-eq-3"></span>
+                <span class="w-1 bg-amber-400 rounded-full animate-eq-4"></span>
+              </div>
+            </div>
+
+            <!-- Timeline Scrubber Preview -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] font-mono text-brand-muted">
+                <span>TC: 00:04:18:22</span>
+                <span class="text-white/80">Premiere Pro • DaVinci</span>
+              </div>
+              <div class="relative w-full h-2 rounded-full bg-brand-bg overflow-hidden border border-white/10">
+                <div class="absolute left-0 top-0 bottom-0 w-3/5 bg-gradient-to-r from-brand-orange to-amber-400 rounded-full"></div>
+                <div class="absolute left-[60%] top-0 bottom-0 w-1 bg-white shadow-glow-orange"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower Tier: Identity & Discipline Synthesis -->
+          <div class="p-4 bg-brand-card/90 border-t border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-brand-surface border border-brand-blue/30 flex items-center justify-center font-display font-bold text-white text-xs shadow-glow-blue/20">
+                PK
+              </div>
+              <div>
+                <p class="text-xs font-bold text-white leading-tight">Pawara Kaveesha</p>
+                <p class="text-[10px] font-mono text-brand-muted">Undergraduate &amp; Creator</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-blue/15 text-blue-300 border border-brand-blue/30">
+                NetSec
+              </span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-orange/15 text-orange-300 border border-brand-orange/30">
+                Media
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </section>

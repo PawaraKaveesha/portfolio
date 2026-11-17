@@ -1,133 +1,243 @@
 ---
 import { profile } from '../data/profile';
+import { Network, Film, Users, TrendingUp, CheckCircle, ExternalLink, Sparkles, Terminal, Shield, ArrowUpRight } from 'lucide-astro';
+import TechIcon from './TechIcon.astro';
 ---
 
-<section id="about" class="py-24 px-4 sm:px-6 lg:px-8 relative bg-brand-bg">
-  <div class="max-w-7xl mx-auto">
+<section id="about" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative bg-brand-bg">
+  
+  <!-- Subtle Section Divider -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-brand-blue/30 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto space-y-12">
+    
     <!-- Section Header -->
-    <div class="reveal-on-scroll max-w-2xl mb-16 space-y-3">
+    <div class="reveal-on-scroll max-w-3xl space-y-3">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-xs font-mono text-brand-blue">
         <span>01</span>
-        <span>//</span>
-        <span>ABOUT PAWARA</span>
+        <span class="text-white/30">//</span>
+        <span>ARCHITECTURE &amp; IDENTITY</span>
       </div>
-      <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-white tracking-tight">
         {profile.aboutHeadline}
       </h2>
       <p class="text-brand-muted text-base sm:text-lg leading-relaxed">
-        Connecting engineering rigor with creative expression and community leadership.
+        Connecting systems engineering rigor with creative visual production and campus leadership.
       </p>
     </div>
 
-    <!-- Editorial Layout: Bio & Replaceable Visual Asset -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <!-- Left Column: Editorial Content (7 cols) -->
-      <div class="lg:col-span-7 space-y-6 reveal-on-scroll">
-        <p class="text-xl sm:text-2xl font-display font-semibold text-white leading-snug">
-          {profile.aboutIntro}
-        </p>
+    <!-- Bento Grid Showcase -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      
+      <!-- Bento Box 1: Core Multidisciplinary Narrative (7 cols) -->
+      <div class="lg:col-span-7 glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6 reveal-on-scroll relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-blue/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="space-y-4 text-brand-muted text-base sm:text-lg leading-relaxed">
-          {profile.bioParagraphs.map((paragraph) => (
-            <p>{paragraph}</p>
-          ))}
-        </div>
-
-        <!-- Currently Exploring Tag Cloud -->
-        <div class="pt-4 border-t border-white/10">
-          <p class="text-xs font-mono uppercase tracking-wider text-brand-blue mb-3">
-            Currently Exploring &amp; Researching:
-          </p>
-          <div class="flex flex-wrap gap-2">
-            {profile.currentlyExploring.map((item) => (
-              <span class="px-3 py-1.5 rounded-lg bg-brand-surface border border-white/10 text-xs font-mono text-brand-text hover:border-brand-blue/40 transition-colors">
-                # {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Profile Visual Placeholder (5 cols) -->
-      <div class="lg:col-span-5 reveal-on-scroll">
-        <div class="relative max-w-md mx-auto">
-          <!-- Ambient backlight -->
-          <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-blue via-transparent to-brand-orange opacity-40 blur-xl"></div>
-
-          <!-- Card Wrapper -->
-          <div class="relative glass-card rounded-2xl p-6 sm:p-8 space-y-6">
-            <!-- Profile Monogram / Visual Placeholder -->
-            <div class="relative aspect-square rounded-xl overflow-hidden bg-brand-surface border border-white/10 flex items-center justify-center p-4">
-              <img
-                src={profile.image.src}
-                alt={profile.image.alt}
-                class="w-full h-full object-contain"
-                loading="lazy"
-              />
-            </div>
-
-            <!-- Replaceable Instruction Note -->
-            <div class="rounded-xl bg-brand-surface/70 border border-white/10 p-3.5 text-xs text-brand-muted space-y-1">
-              <div class="flex items-center gap-1.5 text-brand-blue font-semibold">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span>Profile Image Asset</span>
-              </div>
-              <p class="leading-relaxed">
-                {profile.image.caption}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4 Professional Dimensions -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-20">
-      {profile.dimensions.map((dim, idx) => (
-        <div
-          class={`reveal-on-scroll glass-card rounded-2xl p-6 space-y-4 transition-all duration-300 ${
-            dim.color === 'blue' ? 'glass-card-hover' : 'glass-card-hover-orange'
-          }`}
-          style={`transition-delay: ${idx * 100}ms;`}
-        >
-          <div class="flex items-center justify-between">
-            <span
-              class={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-mono font-bold ${
-                dim.color === 'blue'
-                  ? 'bg-brand-blue/15 text-brand-blue border border-brand-blue/30'
-                  : 'bg-brand-orange/15 text-brand-orange border border-brand-orange/30'
-              }`}
-            >
-              0{idx + 1}
-            </span>
-            <span
-              class={`text-xs font-mono px-2 py-0.5 rounded-full ${
-                dim.color === 'blue' ? 'text-blue-400 bg-blue-500/10' : 'text-orange-400 bg-orange-500/10'
-              }`}
-            >
-              Dimension
-            </span>
+        <div class="space-y-4 relative z-10">
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-blue uppercase tracking-wider">
+            <Sparkles class="w-3.5 h-3.5" />
+            <span>Multidisciplinary Engineering</span>
           </div>
 
-          <h3 class="text-lg font-bold font-display text-white">
-            {dim.title}
+          <h3 class="text-xl sm:text-2xl font-bold font-display text-white leading-snug">
+            {profile.aboutIntro}
           </h3>
 
-          <p class="text-brand-muted text-sm leading-relaxed">
-            {dim.description}
-          </p>
-
-          <div class="flex flex-wrap gap-1.5 pt-2 border-t border-white/5">
-            {dim.tags.map((tag) => (
-              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-brand-surface text-brand-muted border border-white/5">
-                {tag}
-              </span>
-            ))}
+          <div class="space-y-3 text-brand-muted text-sm sm:text-base leading-relaxed">
+            <p>
+              My academic foundation is in <strong class="text-white font-medium">Computer Networks</strong> at NSBM Green University (affiliated with University of Plymouth, UK). My core technical focus spans network infrastructure, defensive cybersecurity, Linux environments, and automation scripting.
+            </p>
+            <p>
+              Simultaneously, I bring practical commercial experience in <strong class="text-brand-orange font-medium">media production and video post-production</strong>. Having contributed to broadcast channels like Channel 19 LK and studio podcasts, I treat digital storytelling with the same precision I apply to code.
+            </p>
+            <p>
+              I believe software and infrastructure shouldn't exist in a vacuum — they should create compelling user experiences, solve real problems, and drive tangible community value.
+            </p>
           </div>
         </div>
-      ))}
+
+        <!-- Philosophy Badge Quote -->
+        <div class="relative z-10 rounded-xl bg-brand-surface/80 border border-white/10 p-4 flex items-center gap-3">
+          <div class="w-1.5 h-10 rounded-full bg-gradient-to-b from-brand-blue to-brand-orange flex-shrink-0"></div>
+          <p class="text-xs sm:text-sm font-mono text-white/90 italic">
+            "True innovation lives at the intersection — where engineering rigor meets visual storytelling."
+          </p>
+        </div>
+      </div>
+
+      <!-- Bento Box 2: Visual Profile Card & Identity (5 cols) -->
+      <div class="lg:col-span-5 glass-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between space-y-5 reveal-on-scroll border-brand-blue/20">
+        
+        <!-- Header status -->
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-mono text-emerald-400 font-medium">VERIFIED UNDERGRADUATE</span>
+          </div>
+          <span class="text-xs font-mono text-brand-muted">PK-CORE</span>
+        </div>
+
+        <!-- Avatar Visual Container -->
+        <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-brand-surface border border-white/10 flex items-center justify-center p-3 group">
+          <img
+            src={profile.image.src}
+            alt={profile.image.alt}
+            class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-card/90 via-transparent to-transparent"></div>
+          
+          <!-- Bottom overlay label -->
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-bold text-white font-display">Pawara Kaveesha</p>
+              <p class="text-[10px] font-mono text-brand-muted">Plymouth / NSBM Undergraduate</p>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-surface/90 text-brand-blue border border-brand-blue/30 backdrop-blur-sm">
+              Final Year
+            </span>
+          </div>
+        </div>
+
+        <!-- Replaceable Instruction Note -->
+        <div class="rounded-xl bg-brand-surface/70 border border-white/5 p-3 text-xs text-brand-muted space-y-1">
+          <div class="flex items-center gap-1.5 text-brand-blue font-semibold">
+            <Sparkles class="w-3.5 h-3.5" />
+            <span>Custom Asset Ready</span>
+          </div>
+          <p class="text-[11px] leading-relaxed text-brand-muted">
+            {profile.image.caption}
+          </p>
+        </div>
+      </div>
+
+      <!-- Bento Box 3: Compact Telemetry By Numbers (5 cols) -->
+      <div class="lg:col-span-5 glass-card rounded-2xl p-6 space-y-4 reveal-on-scroll">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs font-mono uppercase tracking-wider text-brand-muted">
+            Verified Competency Metrics
+          </h4>
+          <span class="text-[10px] font-mono text-brand-blue">LIVE STATUS</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3.5 rounded-xl bg-brand-surface/90 border border-white/10 space-y-1">
+            <span class="text-xl sm:text-2xl font-extrabold font-mono text-brand-blue">BSc (Hons)</span>
+            <p class="text-[11px] text-brand-muted">Computer Networks (Final Year)</p>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-brand-surface/90 border border-white/10 space-y-1">
+            <span class="text-xl sm:text-2xl font-extrabold font-mono text-brand-blue">8+</span>
+            <p class="text-[11px] text-brand-muted">Full-Stack &amp; Python Repos</p>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-brand-surface/90 border border-brand-orange/30 space-y-1">
+            <span class="text-xl sm:text-2xl font-extrabold font-mono text-brand-orange">Broadcast</span>
+            <p class="text-[11px] text-brand-muted">Channel 19 Studio Post-Prod</p>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-brand-surface/90 border border-white/10 space-y-1">
+            <span class="text-xl sm:text-2xl font-extrabold font-mono text-brand-cyan">Duothan 6.0</span>
+            <p class="text-[11px] text-brand-muted">IEEE Hackathon Finance Lead</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento Box 4: Active Technical Radar (7 cols) -->
+      <div class="lg:col-span-7 glass-card rounded-2xl p-6 space-y-4 reveal-on-scroll">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></span>
+            <h4 class="text-xs font-mono uppercase tracking-wider text-brand-blue">
+              Active Focus &amp; Technical Radar
+            </h4>
+          </div>
+          <span class="text-[10px] font-mono text-brand-muted">ACADEMIC &amp; LABS</span>
+        </div>
+
+        <p class="text-xs text-brand-muted leading-relaxed">
+          Technologies and research areas actively deployed in current software prototypes, academic modules, and client systems:
+        </p>
+
+        <div class="flex flex-wrap gap-2 pt-1">
+          {profile.currentlyExploring.map((tech) => (
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-surface border border-white/10 text-xs font-mono text-white/90 hover:border-brand-blue/50 hover:bg-brand-elevated transition-colors">
+              <TechIcon name={tech} class="w-3.5 h-3.5" />
+              <span>{tech}</span>
+            </div>
+          ))}
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-orange/10 border border-brand-orange/30 text-xs font-mono text-brand-orange">
+            <TechIcon name="premiere" class="w-3.5 h-3.5" />
+            <span>Adobe Premiere Pro</span>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-orange/10 border border-brand-orange/30 text-xs font-mono text-brand-orange">
+            <TechIcon name="davinci" class="w-3.5 h-3.5" />
+            <span>DaVinci Resolve</span>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    <!-- 4 Professional Dimensions with Custom Mini-Diagram Visuals -->
+    <div class="space-y-4 pt-8">
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-brand-blue"></div>
+        <h3 class="text-xs font-mono uppercase tracking-wider text-brand-muted">
+          Four Core Operational Dimensions
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {profile.dimensions.map((dim, idx) => (
+          <div
+            class={`reveal-on-scroll glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between transition-all duration-300 ${
+              dim.color === 'blue' ? 'glass-card-hover' : 'glass-card-hover-orange'
+            }`}
+            style={`transition-delay: ${idx * 75}ms;`}
+          >
+            <div class="space-y-3">
+              <!-- Top Row with Number and Icon -->
+              <div class="flex items-center justify-between">
+                <span
+                  class={`w-10 h-10 rounded-xl flex items-center justify-center font-mono font-bold text-sm ${
+                    dim.color === 'blue'
+                      ? 'bg-brand-blue/15 text-brand-blue border border-brand-blue/30'
+                      : 'bg-brand-orange/15 text-brand-orange border border-brand-orange/30'
+                  }`}
+                >
+                  0{idx + 1}
+                </span>
+
+                <div class="p-2 rounded-lg bg-brand-surface border border-white/5">
+                  {dim.title === 'TECHNOLOGY' && <Network class="w-4 h-4 text-brand-blue" />}
+                  {dim.title === 'CREATIVITY' && <Film class="w-4 h-4 text-brand-orange" />}
+                  {dim.title === 'LEADERSHIP' && <Users class="w-4 h-4 text-brand-blue" />}
+                  {dim.title === 'GROWTH' && <TrendingUp class="w-4 h-4 text-brand-orange" />}
+                </div>
+              </div>
+
+              <h4 class="text-lg font-bold font-display text-white">
+                {dim.title}
+              </h4>
+
+              <p class="text-brand-muted text-xs sm:text-sm leading-relaxed">
+                {dim.description}
+              </p>
+            </div>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+              {dim.tags.map((tag) => (
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-brand-surface text-brand-muted border border-white/5">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
   </div>
 </section>

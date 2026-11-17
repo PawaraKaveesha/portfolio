@@ -1,6 +1,7 @@
 ---
 import { profile } from '../data/profile';
 import { socialLinks } from '../data/social';
+import { ArrowUp, Github, Linkedin, ExternalLink, Heart, Sparkles } from 'lucide-astro';
 
 const currentYear = new Date().getFullYear();
 
@@ -17,6 +18,10 @@ const navLinks = [
 ---
 
 <footer class="border-t border-white/10 bg-brand-bg py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  
+  <!-- Subtle Glow -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-brand-blue/30 to-transparent"></div>
+
   <div class="max-w-7xl mx-auto space-y-12">
     <!-- Top Footer: Brand, Statement, Navigation -->
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
@@ -38,18 +43,23 @@ const navLinks = [
         <p class="text-xs text-brand-muted max-w-md leading-relaxed font-mono">
           Final-Year Computer Networks Undergraduate • Software Developer • Digital Media Specialist
         </p>
+
+        <div class="inline-flex items-center gap-2 pt-2 text-xs font-mono text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Open for Software &amp; Creative Collaborations</span>
+        </div>
       </div>
 
       <!-- Quick Nav Links (3 cols) -->
       <div class="md:col-span-3 space-y-3">
         <p class="text-xs font-mono uppercase tracking-wider text-brand-blue">
-          Navigation
+          Navigation Index
         </p>
-        <ul class="space-y-2 text-xs">
+        <ul class="space-y-2 text-xs font-mono">
           {navLinks.map((item) => (
             <li>
               <a href={item.href} class="text-brand-muted hover:text-white transition-colors">
-                {item.label}
+                // {item.label}
               </a>
             </li>
           ))}
@@ -59,32 +69,37 @@ const navLinks = [
       <!-- External Profiles & Channels (3 cols) -->
       <div class="md:col-span-3 space-y-3">
         <p class="text-xs font-mono uppercase tracking-wider text-brand-orange">
-          Verified Profiles
+          Verified Profiles &amp; Media
         </p>
         <ul class="space-y-2 text-xs">
           <li>
-            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-blue transition-colors">
-              LinkedIn
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-blue transition-colors flex items-center gap-1.5">
+              <span>LinkedIn Profile</span>
+              <ArrowUp class="w-3 h-3 rotate-45" />
             </a>
           </li>
           <li>
-            <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-white transition-colors">
-              GitHub Profile
+            <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-white transition-colors flex items-center gap-1.5">
+              <span>GitHub Repositories</span>
+              <ArrowUp class="w-3 h-3 rotate-45" />
             </a>
           </li>
           <li>
-            <a href={socialLinks.youtube.channel19} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-orange transition-colors">
-              Channel 19 (YouTube)
+            <a href={socialLinks.youtube.channel19} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-orange transition-colors flex items-center gap-1.5">
+              <span>Channel 19 LK (YouTube)</span>
+              <ArrowUp class="w-3 h-3 rotate-45" />
             </a>
           </li>
           <li>
-            <a href={socialLinks.tiktok.techHttpLk} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-cyan-400 transition-colors">
-              Tech HTTP LK (TikTok)
+            <a href={socialLinks.tiktok.techHttpLk} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+              <span>Tech HTTP LK (TikTok)</span>
+              <ArrowUp class="w-3 h-3 rotate-45" />
             </a>
           </li>
           <li>
-            <a href={socialLinks.orendaLive} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-orange transition-colors">
-              Orenda Resort Live
+            <a href={socialLinks.orendaLive} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-orange transition-colors flex items-center gap-1.5">
+              <span>Orenda Eco Lodge &amp; Spa (Live)</span>
+              <ArrowUp class="w-3 h-3 rotate-45" />
             </a>
           </li>
         </ul>
@@ -94,17 +109,15 @@ const navLinks = [
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-brand-muted">
       <p>
-        © {currentYear} {profile.name}. All rights reserved. Built with Astro &amp; TypeScript.
+        © {currentYear} {profile.name}. Handcrafted with Astro, Tailwind CSS &amp; TypeScript.
       </p>
 
       <a
         href="#"
-        class="inline-flex items-center gap-1.5 text-brand-muted hover:text-white transition-colors"
+        class="inline-flex items-center gap-1.5 text-brand-muted hover:text-white transition-colors p-1"
       >
         <span>Back to Top</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-        </svg>
+        <ArrowUp class="w-3.5 h-3.5" />
       </a>
     </div>
   </div>

@@ -105,23 +105,32 @@ function initHeroCanvas() {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  let width = (canvas.width = canvas.offsetWidth);
-  let height = (canvas.height = canvas.offsetHeight);
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let width = 0;
+  let height = 0;
 
-  window.addEventListener('resize', () => {
-    if (!canvas) return;
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
-  }, { passive: true });
+  function resize() {
+    if (!canvas || !ctx) return;
+    const rect = canvas.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+  }
+
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
 
   interface Node {
     x: number;
     y: number;
     vx: number;
     vy: number;
-    radius: number;
-    type: 'tech' | 'creative';
+    baseRadius: number;
+    type: 'tech' | 'creative' | 'hybrid';
     pulse: number;
+    pulseSpeed: number;
   }
 
   interface Packet {
@@ -130,51 +139,60 @@ function initHeroCanvas() {
     progress: number;
     speed: number;
     color: string;
+    size: number;
   }
 
   const nodes: Node[] = [];
-  const nodeCount = Math.min(38, Math.max(18, Math.floor(width / 35)));
+  const nodeCount = Math.min(42, Math.max(22, Math.floor(width / 32)));
 
   for (let i = 0; i < nodeCount; i++) {
+    const typeRoll = Math.random();
     nodes.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-      radius: Math.random() * 2.5 + 2,
-      type: i % 2 === 0 ? 'tech' : 'creative',
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      baseRadius: Math.random() * 2 + 1.8,
+      type: typeRoll < 0.48 ? 'tech' : typeRoll < 0.85 ? 'creative' : 'hybrid',
       pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.02 + Math.random() * 0.02,
     });
   }
 
   const packets: Packet[] = [];
   function spawnPacket() {
-    if (nodes.length < 2 || packets.length > 10) return;
+    if (nodes.length < 2 || packets.length > 12) return;
     const a = nodes[Math.floor(Math.random() * nodes.length)];
     const b = nodes[Math.floor(Math.random() * nodes.length)];
     if (a !== b) {
       const dist = Math.hypot(a.x - b.x, a.y - b.y);
-      if (dist < 180) {
+      if (dist < 170) {
+        let color = '#4285FF';
+        if (a.type === 'creative') color = '#FF8A35';
+        else if (a.type === 'hybrid') color = '#00D4FF';
         packets.push({
           from: a,
           to: b,
           progress: 0,
-          speed: 0.012 + Math.random() * 0.01,
-          color: a.type === 'tech' ? '#4285FF' : '#FF8A35',
+          speed: 0.01 + Math.random() * 0.012,
+          color,
+          size: Math.random() * 1.5 + 2,
         });
       }
     }
   }
 
   // Mouse interaction
-  let mouse = { x: -1000, y: -1000 };
-  canvas.addEventListener('mousemove', (e) => {
+  let mouse = { x: -2000, y: -2000 };
+  window.addEventListener('mousemove', (e) => {
+    if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
     mouse.y = e.clientY - rect.top;
-  });
-  canvas.addEventListener('mouseleave', () => {
-    mouse = { x: -1000, y: -1000 };
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    mouse = { x: -2000, y: -2000 };
   });
 
   let animationFrameId: number;
@@ -183,10 +201,11 @@ function initHeroCanvas() {
     if (!ctx) return;
     ctx.clearRect(0, 0, width, height);
 
-    if (Math.random() < 0.05) spawnPacket();
+    if (Math.random() < 0.06) spawnPacket();
 
-    // Update & draw links
-    const maxDist = 145;
+    const maxDist = 155;
+
+    // Draw connection lines
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[i].x - nodes[j].x;
@@ -194,7 +213,7 @@ function initHeroCanvas() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.22;
+          const alpha = (1 - dist / maxDist) * 0.25;
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -215,7 +234,7 @@ function initHeroCanvas() {
       }
     }
 
-    // Update & draw packets
+    // Update and draw packets
     for (let p = packets.length - 1; p >= 0; p--) {
       const pkt = packets[p];
       pkt.progress += pkt.speed;
@@ -225,49 +244,64 @@ function initHeroCanvas() {
       }
       const curX = pkt.from.x + (pkt.to.x - pkt.from.x) * pkt.progress;
       const curY = pkt.from.y + (pkt.to.y - pkt.from.y) * pkt.progress;
+
       ctx.beginPath();
-      ctx.arc(curX, curY, 2.8, 0, Math.PI * 2);
+      ctx.arc(curX, curY, pkt.size, 0, Math.PI * 2);
       ctx.fillStyle = pkt.color;
       ctx.shadowColor = pkt.color;
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = 10;
       ctx.fill();
       ctx.shadowBlur = 0;
     }
 
-    // Update & draw nodes
+    // Update and draw nodes
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
 
-      // Slight repelling from mouse
+      // Subtle mouse interaction (soft magnetic pull/repel)
       const mdx = node.x - mouse.x;
       const mdy = node.y - mouse.y;
       const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-      if (mdist < 100 && mdist > 0) {
-        const force = (100 - mdist) / 100 * 0.8;
+      if (mdist < 140 && mdist > 0) {
+        const force = ((140 - mdist) / 140) * 0.9;
         node.x += (mdx / mdist) * force;
         node.y += (mdy / mdist) * force;
+
+        // Draw dynamic tether to mouse
+        ctx.beginPath();
+        ctx.moveTo(node.x, node.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = node.type === 'creative' 
+          ? `rgba(255, 138, 53, ${(1 - mdist / 140) * 0.3})`
+          : `rgba(66, 133, 255, ${(1 - mdist / 140) * 0.3})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
       }
 
-      // Movement
+      // Drift physics
       node.x += node.vx;
       node.y += node.vy;
 
       if (node.x < 0 || node.x > width) node.vx *= -1;
       if (node.y < 0 || node.y > height) node.vy *= -1;
 
-      node.pulse += 0.03;
-      const pulseSize = Math.sin(node.pulse) * 0.8;
+      node.pulse += node.pulseSpeed;
+      const pulseSize = Math.sin(node.pulse) * 1.2;
+      const r = Math.max(1, node.baseRadius + pulseSize);
 
       ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius + pulseSize, 0, Math.PI * 2);
+      ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
       if (node.type === 'tech') {
         ctx.fillStyle = '#4285FF';
-        ctx.shadowColor = 'rgba(66, 133, 255, 0.7)';
-      } else {
+        ctx.shadowColor = 'rgba(66, 133, 255, 0.8)';
+      } else if (node.type === 'creative') {
         ctx.fillStyle = '#FF8A35';
-        ctx.shadowColor = 'rgba(255, 138, 53, 0.7)';
+        ctx.shadowColor = 'rgba(255, 138, 53, 0.8)';
+      } else {
+        ctx.fillStyle = '#00D4FF';
+        ctx.shadowColor = 'rgba(0, 212, 255, 0.8)';
       }
-      ctx.shadowBlur = 6;
+      ctx.shadowBlur = 8;
       ctx.fill();
       ctx.shadowBlur = 0;
     }

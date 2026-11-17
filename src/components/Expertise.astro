@@ -1,56 +1,89 @@
 ---
 import { skillCategories } from '../data/skills';
+import TechIcon from './TechIcon.astro';
+import { Code, Network, ShieldCheck, Terminal, Database, Film, CheckCircle2, Sparkles, Cpu } from 'lucide-astro';
 ---
 
-<section id="expertise" class="py-24 px-4 sm:px-6 lg:px-8 relative bg-brand-surface/40">
-  <div class="max-w-7xl mx-auto space-y-16">
+<section id="expertise" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative bg-brand-surface/30">
+  
+  <!-- Subtle Section Divider -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-brand-blue/30 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto space-y-12">
+    
     <!-- Header -->
-    <div class="reveal-on-scroll max-w-2xl space-y-3">
+    <div class="reveal-on-scroll max-w-3xl space-y-3">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-card border border-white/10 text-xs font-mono text-brand-blue">
         <span>02</span>
-        <span>//</span>
+        <span class="text-white/30">//</span>
         <span>TECHNICAL &amp; CREATIVE CAPABILITIES</span>
       </div>
-      <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight">
-        Tools, technologies &amp; things I work with.
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-white tracking-tight">
+        Tools, technologies &amp; competencies.
       </h2>
+
       <p class="text-brand-muted text-base sm:text-lg leading-relaxed">
-        Categorized overview of practical competencies and actively developing domains. No arbitrary percentage bars—just transparent capability indicators.
+        Categorized overview of practical competencies and actively developing domains. Grounded in real coursework, laboratory configuration, and production software.
       </p>
 
-      <!-- Legend -->
-      <div class="flex items-center gap-6 pt-2 text-xs font-mono">
+      <!-- Visual Legend & Telemetry Bar -->
+      <div class="flex flex-wrap items-center gap-6 pt-2 text-xs font-mono">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <span class="text-white/80">Practical Experience</span>
+          <span class="text-white/90">Production / Practical Experience</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-          <span class="text-white/80">Currently Learning / Lab Exploration</span>
+          <span class="text-brand-muted">Academic Labs / Active Exploration</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 text-brand-blue border-l border-white/10 pl-4">
+          <Cpu class="w-3.5 h-3.5" />
+          <span>6 Disciplines • 38+ Competencies</span>
         </div>
       </div>
     </div>
 
-    <!-- Skills Grid -->
+    <!-- Skills Grid: 6 Categorized Visual Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         skillCategories.map((cat, idx) => (
           <div
-            class={`reveal-on-scroll glass-card rounded-2xl p-6 sm:p-7 space-y-6 flex flex-col justify-between transition-all duration-300 ${
+            class={`reveal-on-scroll glass-card rounded-2xl p-6 flex flex-col justify-between space-y-5 transition-all duration-300 ${
               cat.accent === 'orange' ? 'glass-card-hover-orange' : 'glass-card-hover'
             }`}
-            style={`transition-delay: ${idx * 80}ms;`}
+            style={`transition-delay: ${idx * 75}ms;`}
           >
-            <div class="space-y-4">
+            <!-- Card Header -->
+            <div class="space-y-3">
               <div class="flex items-center justify-between">
-                <span
-                  class={`text-xs font-mono uppercase px-2.5 py-1 rounded-md tracking-wider ${
-                    cat.accent === 'orange'
-                      ? 'bg-brand-orange/15 text-brand-orange border border-brand-orange/30'
-                      : 'bg-brand-blue/15 text-brand-blue border border-brand-blue/30'
-                  }`}
-                >
-                  {cat.title}
+                <div class="flex items-center gap-2.5">
+                  <div
+                    class={`p-2 rounded-xl border ${
+                      cat.accent === 'orange'
+                        ? 'bg-brand-orange/15 border-brand-orange/30 text-brand-orange'
+                        : 'bg-brand-blue/15 border-brand-blue/30 text-brand-blue'
+                    }`}
+                  >
+                    {cat.id === 'programming' && <Code class="w-4 h-4" />}
+                    {cat.id === 'networking' && <Network class="w-4 h-4" />}
+                    {cat.id === 'cybersecurity' && <ShieldCheck class="w-4 h-4" />}
+                    {cat.id === 'devops-tools' && <Terminal class="w-4 h-4" />}
+                    {cat.id === 'backend-databases' && <Database class="w-4 h-4" />}
+                    {cat.id === 'creative-media' && <Film class="w-4 h-4" />}
+                  </div>
+                  <div>
+                    <h3 class="text-base font-bold font-display text-white">
+                      {cat.title}
+                    </h3>
+                    <span class="text-[10px] font-mono text-brand-muted">
+                      {cat.skills.length} Competencies
+                    </span>
+                  </div>
+                </div>
+
+                <span class="text-xs font-mono text-white/30">
+                  0{idx + 1}
                 </span>
               </div>
 
@@ -59,22 +92,24 @@ import { skillCategories } from '../data/skills';
               </p>
             </div>
 
-            <!-- Skills List / Badges -->
-            <div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+            <!-- Visual Icon-Based Skill Cluster -->
+            <div class="flex flex-wrap gap-2 pt-3 border-t border-white/5">
               {cat.skills.map((skill) => (
                 <div
-                  class={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                  class={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all duration-200 group ${
                     skill.status === 'practical'
-                      ? 'bg-brand-surface/90 border-white/10 text-white hover:border-brand-blue/40'
-                      : 'bg-brand-surface/50 border-white/5 text-brand-muted hover:border-amber-400/40'
+                      ? 'bg-brand-surface/90 border-white/10 text-white hover:border-brand-blue/50 hover:bg-brand-elevated'
+                      : 'bg-brand-surface/40 border-white/5 text-brand-muted hover:border-amber-400/40 hover:text-white'
                   }`}
                 >
+                  <TechIcon name={skill.name} class="w-3.5 h-3.5 flex-shrink-0" />
+                  <span class="text-xs font-sans font-medium">{skill.name}</span>
                   <span
-                    class={`w-1.5 h-1.5 rounded-full ${
+                    class={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
                       skill.status === 'practical' ? 'bg-emerald-400' : 'bg-amber-400'
                     }`}
+                    title={skill.status === 'practical' ? 'Practical Experience' : 'Continuous Learning'}
                   ></span>
-                  <span>{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -82,5 +117,6 @@ import { skillCategories } from '../data/skills';
         ))
       }
     </div>
+
   </div>
 </section>
