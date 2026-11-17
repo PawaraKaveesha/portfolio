@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #080B12;
+    --color-surface: #101522;
+    --color-card: #131A29;
+    --color-blue: #4285FF;
+    --color-orange: #FF8A35;
+    --color-text: #F5F7FA;
+    --color-muted: #929BAD;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #080B12;
+    color: #F5F7FA;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #080B12;
+    color: #F5F7FA;
+    overflow-x: hidden;
+    min-height: 100vh;
+    selection-background-color: rgba(66, 133, 255, 0.35);
+  }
+
+  ::selection {
+    background: rgba(66, 133, 255, 0.4);
+    color: #ffffff;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #080B12;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1E283D;
+    border-radius: 4px;
+    border: 2px solid #080B12;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2E3E5C;
+  }
+}
+
+@layer utilities {
+  /* Subtle glass surface */
+  .glass-card {
+    background: rgba(19, 26, 41, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card-hover:hover {
+    border-color: rgba(66, 133, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(66, 133, 255, 0.15);
+  }
+
+  .glass-card-hover-orange:hover {
+    border-color: rgba(255, 138, 53, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(255, 138, 53, 0.15);
+  }
+
+  /* Grid dot background */
+  .bg-grid-pattern {
+    background-size: 32px 32px;
+    background-image: 
+      radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  }
+
+  /* Gradient text */
+  .text-gradient-tech {
+    background: linear-gradient(135deg, #F5F7FA 30%, #4285FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-creative {
+    background: linear-gradient(135deg, #F5F7FA 30%, #FF8A35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-dual {
+    background: linear-gradient(135deg, #4285FF 0%, #FFFFFF 50%, #FF8A35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Scroll reveal classes */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,37 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { profile } from '../data/profile';
+---
+
+<MainLayout title={`404: Packet Lost | ${profile.name}`}>
+  <div class="min-h-screen flex items-center justify-center px-4 relative bg-grid-pattern">
+    <div class="relative z-10 max-w-md w-full glass-card rounded-2xl p-8 text-center space-y-6 shadow-2xl border-white/10">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-surface border border-brand-orange/40 flex items-center justify-center font-display font-black text-2xl text-brand-orange shadow-glow-orange">
+        404
+      </div>
+
+      <div class="space-y-2">
+        <h1 class="text-2xl font-bold font-display text-white">
+          Packet Lost in Transit
+        </h1>
+        <p class="text-xs font-mono text-brand-muted">
+          STATUS: ICMP Host Unreachable / Endpoint Missing
+        </p>
+      </div>
+
+      <p class="text-sm text-brand-muted leading-relaxed">
+        The route or resource you requested could not be resolved on this host. Let's redirect you back to the home route.
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-brand-blue hover:bg-blue-600 text-white text-xs font-semibold shadow-glow-blue transition-all duration-200"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        <span>Return to Portfolio Home</span>
+      </a>
+    </div>
+  </div>
+</MainLayout>

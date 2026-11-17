@@ -1,0 +1,25 @@
+<svg width='800' height='450' viewBox='0 0 800 450' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <rect width='800' height='450' fill='#0B101D'/>
+  <defs>
+    <radialGradient id='sg' cx='50%' cy='50%' r='50%'>
+      <stop offset='0%' stop-color='#FF8A35' stop-opacity='0.25'/>
+      <stop offset='100%' stop-color='#0B101D' stop-opacity='0'/>
+    </radialGradient>
+  </defs>
+  <rect width='800' height='450' fill='url(#sg)'/>
+  <rect x='150' y='70' width='500' height='310' rx='16' fill='#131A29' stroke='rgba(255,138,53,0.3)' stroke-width='1.5'/>
+  <text x='400' y='125' font-family='sans-serif' font-size='24' font-weight='800' fill='#FF8A35' text-anchor='middle' letter-spacing='1'>SIMPLECLIX</text>
+  <text x='400' y='150' font-family='sans-serif' font-size='12' fill='#929BAD' text-anchor='middle'>Digital Solutions &amp; Web Development Initiative</text>
+
+  <rect x='190' y='180' width='200' height='110' rx='8' fill='#101522' stroke='rgba(255,255,255,0.06)'/>
+  <text x='210' y='210' font-family='sans-serif' font-size='12' font-weight='600' fill='#F5F7FA'>⚡ Web Engineering</text>
+  <text x='210' y='235' font-family='sans-serif' font-size='10' fill='#929BAD'>Astro &amp; Modern Frameworks</text>
+  <text x='210' y='255' font-family='sans-serif' font-size='10' fill='#10B981'>Optimized Core Web Vitals</text>
+
+  <rect x='410' y='180' width='200' height='110' rx='8' fill='#101522' stroke='rgba(255,255,255,0.06)'/>
+  <text x='430' y='210' font-family='sans-serif' font-size='12' font-weight='600' fill='#F5F7FA'>🎯 Digital Marketing</text>
+  <text x='430' y='235' font-family='sans-serif' font-size='10' fill='#929BAD'>Visual Media &amp; Storytelling</text>
+  <text x='430' y='255' font-family='sans-serif' font-size='10' fill='#FF8A35'>Strategic Brand Reach</text>
+
+  <text x='400' y='340' font-family='sans-serif' font-size='12' fill='#F5F7FA' text-anchor='middle'>Where Software Craftsmanship Meets Digital Branding</text>
+</svg>

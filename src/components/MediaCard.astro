@@ -1,0 +1,117 @@
+---
+import type { MediaItem } from '../data/media';
+
+interface Props {
+  item: MediaItem;
+}
+
+const { item } = Astro.props;
+---
+
+<div
+  class="reveal-on-scroll glass-card rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange/40 hover:shadow-2xl group"
+  data-media-category={item.category}
+>
+  <!-- Thumbnail & Play Preview -->
+  <div>
+    <div class="relative aspect-video w-full overflow-hidden bg-brand-surface border-b border-white/10 group-hover:shadow-glow-orange/20">
+      <img
+        src={item.thumbnail}
+        alt={item.title}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-black/30 to-transparent"></div>
+
+      <!-- Platform Pill -->
+      <div class="absolute top-3 left-3">
+        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-brand-bg/90 text-white border border-white/10 backdrop-blur-sm">
+          {item.platform}
+        </span>
+      </div>
+
+      <!-- Category Pill -->
+      <div class="absolute top-3 right-3">
+        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-brand-orange/20 text-brand-orange border border-brand-orange/40 backdrop-blur-sm">
+          {item.category}
+        </span>
+      </div>
+
+      <!-- Play Button Overlay (for video items with videoId) -->
+      {
+        item.videoId ? (
+          <button
+            type="button"
+            data-play-video
+            data-video-id={item.videoId}
+            data-video-title={item.title}
+            aria-label={`Play preview of ${item.title}`}
+            class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 focus:outline-none"
+          >
+            <div class="w-12 h-12 rounded-full bg-brand-orange text-brand-bg flex items-center justify-center shadow-glow-orange pl-0.5">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </div>
+          </button>
+        ) : null
+      }
+    </div>
+
+    <!-- Details Content -->
+    <div class="p-6 space-y-3">
+      <h3 class="text-lg font-bold font-display text-white group-hover:text-brand-orange transition-colors">
+        {item.title}
+      </h3>
+
+      <!-- Channel Name -->
+      <p class="text-xs font-mono text-brand-orange/90 font-medium">
+        Reference: {item.channelOrProject}
+      </p>
+
+      <!-- Editable Contribution Field Highlight -->
+      <div class="rounded-lg bg-brand-surface/70 border border-white/5 p-2.5 space-y-1">
+        <span class="text-[10px] font-mono uppercase text-brand-muted tracking-wider block">
+          Role / Contribution:
+        </span>
+        <span class="text-xs font-medium text-white/95">
+          {item.contribution}
+        </span>
+      </div>
+
+      <p class="text-sm text-brand-muted leading-relaxed line-clamp-3">
+        {item.description}
+      </p>
+
+      <!-- Media Tags -->
+      <div class="flex flex-wrap gap-1.5 pt-2">
+        {item.tags.map((tag) => (
+          <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-brand-surface text-brand-muted border border-white/5">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Link Action -->
+  <div class="p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between">
+    <a
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-orange hover:text-white transition-colors"
+    >
+      <span>Open on {item.platform}</span>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+      </svg>
+    </a>
+
+    {item.videoId && (
+      <span class="text-[10px] font-mono text-brand-muted">
+        Modal Preview Available
+      </span>
+    )}
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<svg width='800' height='450' viewBox='0 0 800 450' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <rect width='800' height='450' fill='#0B101D'/>
+  <defs>
+    <radialGradient id='og' cx='50%' cy='50%' r='50%'>
+      <stop offset='0%' stop-color='#FF8A35' stop-opacity='0.2'/>
+      <stop offset='100%' stop-color='#0B101D' stop-opacity='0'/>
+    </radialGradient>
+  </defs>
+  <rect width='800' height='450' fill='url(#og)'/>
+  <rect x='140' y='60' width='520' height='330' rx='16' fill='#131A29' stroke='rgba(255,138,53,0.35)' stroke-width='1.5'/>
+  <rect x='140' y='60' width='520' height='44' rx='16' fill='#182236'/>
+  <circle cx='170' cy='82' r='5' fill='#EF4444'/>
+  <circle cx='186' cy='82' r='5' fill='#F59E0B'/>
+  <circle cx='202' cy='82' r='5' fill='#10B981'/>
+  <text x='400' y='87' font-family='sans-serif' font-size='12' fill='#929BAD' text-anchor='middle'>orenda-final-prod.onrender.com</text>
+  
+  <!-- Simulated UI Layout -->
+  <rect x='170' y='125' width='210' height='140' rx='8' fill='#101522' stroke='rgba(255,255,255,0.06)'/>
+  <text x='275' y='190' font-family='serif' font-size='18' fill='#FF8A35' text-anchor='middle' font-weight='bold'>ORENDA</text>
+  <text x='275' y='210' font-family='sans-serif' font-size='10' fill='#929BAD' text-anchor='middle' letter-spacing='2'>ECO LODGE &amp; SPA</text>
+  <text x='275' y='230' font-family='sans-serif' font-size='9' fill='#4285FF' text-anchor='middle'>Galle, Sri Lanka</text>
+
+  <rect x='400' y='125' width='230' height='65' rx='8' fill='#182236' stroke='rgba(255,255,255,0.05)'/>
+  <text x='420' y='150' font-family='sans-serif' font-size='11' font-weight='600' fill='#F5F7FA'>Luxury Deluxe Villas</text>
+  <text x='420' y='170' font-family='sans-serif' font-size='10' fill='#10B981'>✓ Live Availability &amp; Booking API</text>
+
+  <rect x='400' y='200' width='230' height='65' rx='8' fill='#182236' stroke='rgba(255,255,255,0.05)'/>
+  <text x='420' y='225' font-family='sans-serif' font-size='11' font-weight='600' fill='#F5F7FA'>Admin Inquiries Dashboard</text>
+  <text x='420' y='245' font-family='sans-serif' font-size='10' fill='#4285FF'>✓ JWT Auth &amp; PostgreSQL Backend</text>
+
+  <rect x='170' y='285' width='460' height='80' rx='8' fill='#101522'/>
+  <text x='190' y='315' font-family='monospace' font-size='11' fill='#929BAD'>Stack: React + Vite | Express REST API | Neon Postgres | Cloudflare Pages</text>
+  <text x='190' y='340' font-family='sans-serif' font-size='11' fill='#10B981'>Status: Deployed &amp; Active Production Hospitality System</text>
+</svg>

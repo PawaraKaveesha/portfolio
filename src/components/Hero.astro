@@ -1,0 +1,120 @@
+---
+import { profile } from '../data/profile';
+import { socialLinks } from '../data/social';
+
+const tags = [
+  { label: 'Software Development', type: 'tech' },
+  { label: 'Computer Networks', type: 'tech' },
+  { label: 'Cybersecurity', type: 'tech' },
+  { label: 'Digital Media', type: 'creative' },
+];
+---
+
+<section class="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-grid-pattern">
+  <!-- Interactive Canvas Background -->
+  <div class="absolute inset-0 z-0 pointer-events-auto opacity-75">
+    <canvas id="hero-canvas" class="w-full h-full block"></canvas>
+  </div>
+
+  <!-- Radial gradient atmospheric glow -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-gradient-to-tr from-brand-blue/15 via-transparent to-brand-orange/15 blur-[120px] pointer-events-none -z-10"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+    <!-- Availability & Status Badge -->
+    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-surface/80 border border-white/10 backdrop-blur-md shadow-card-subtle animate-float-slow">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+      </span>
+      <span class="text-xs font-mono font-medium text-brand-muted tracking-wide">
+        {profile.availability.text}
+      </span>
+    </div>
+
+    <!-- Editorial Headline -->
+    <div class="space-y-4 max-w-4xl mx-auto">
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-[1.1] text-white">
+        Building at the intersection of <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-sky-300 to-brand-blue">Technology</span>
+        <span class="text-white/40 font-light mx-2">&amp;</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-amber-300 to-brand-orange">Creativity</span>.
+      </h1>
+
+      <p class="text-base sm:text-lg lg:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed font-normal">
+        {profile.heroDescription}
+      </p>
+    </div>
+
+    <!-- Professional Focus Tags -->
+    <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+      {
+        tags.map((tag) => (
+          <span
+            class={`px-3 py-1 rounded-full text-xs font-medium border backdrop-blur-sm transition-transform hover:scale-105 ${
+              tag.type === 'tech'
+                ? 'bg-brand-blue/10 border-brand-blue/30 text-blue-300'
+                : 'bg-brand-orange/10 border-brand-orange/30 text-orange-300'
+            }`}
+          >
+            {tag.label}
+          </span>
+        ))
+      }
+    </div>
+
+    <!-- Primary CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+      <a
+        href="#projects"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white font-semibold text-sm shadow-glow-blue hover:shadow-xl transition-all duration-300 group"
+      >
+        <span>Explore My Work</span>
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </a>
+
+      <a
+        href="#contact"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-surface/90 hover:bg-brand-elevated border border-white/10 hover:border-brand-orange/40 text-brand-text font-medium text-sm transition-all duration-300 shadow-card-subtle"
+      >
+        <span>Connect With Me</span>
+        <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Interactive Terminal & Creative Timeline Micro-Card -->
+    <div class="pt-8 max-w-2xl mx-auto">
+      <div class="glass-card rounded-2xl p-4 sm:p-5 text-left font-mono text-xs shadow-2xl relative overflow-hidden group">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+            <span class="ml-2 text-brand-muted text-[11px]">pawara@sys-node:~</span>
+          </div>
+          <div class="flex items-center gap-3 text-[11px] text-brand-muted">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-blue animate-pulse"></span> NetSec Engine</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-orange"></span> Media Timeline</span>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 text-brand-muted">
+          <p><span class="text-brand-blue font-semibold">sys.init()</span>: Loading multidisciplinary modules...</p>
+          <p class="text-white/80">
+            <span class="text-emerald-400">✓</span> Computer Networks <span class="text-brand-muted">:: B.Sc (Hons) Plymouth / NSBM</span>
+          </p>
+          <p class="text-white/80">
+            <span class="text-emerald-400">✓</span> Software &amp; Security <span class="text-brand-muted">:: Python, React, Automation &amp; Cryptography</span>
+          </p>
+          <p class="text-white/80">
+            <span class="text-brand-orange">✓</span> Creative Production <span class="text-brand-muted">:: Video Editing, Premiere Pro, Channel 19 &amp; Digital Media</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

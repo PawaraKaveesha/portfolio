@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="14" fill="#080B12"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" stroke="url(#borderGrad)" stroke-width="2"/>
+  <defs>
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4285FF"/>
+      <stop offset="1" stop-color="#FF8A35"/>
+    </linearGradient>
+  </defs>
+  <text x="32" y="42" font-family="'Manrope', 'Inter', system-ui, sans-serif" font-size="24" font-weight="800" fill="#F5F7FA" text-anchor="middle" letter-spacing="1">PK</text>
+  <circle cx="50" cy="18" r="3" fill="#4285FF"/>
+  <circle cx="14" cy="48" r="2.5" fill="#FF8A35"/>
+</svg>

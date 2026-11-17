@@ -1,0 +1,36 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Expertise from '../components/Expertise.astro';
+import Projects from '../components/Projects.astro';
+import MediaPortfolio from '../components/MediaPortfolio.astro';
+import Experience from '../components/Experience.astro';
+import Leadership from '../components/Leadership.astro';
+import Education from '../components/Education.astro';
+import BeyondCode from '../components/BeyondCode.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { profile } from '../data/profile';
+---
+
+<MainLayout
+  title={`${profile.name} — ${profile.positioning}`}
+  description={profile.heroDescription}
+>
+  <Navbar />
+  <main id="main-content">
+    <Hero />
+    <About />
+    <Expertise />
+    <Projects />
+    <MediaPortfolio />
+    <Experience />
+    <Leadership />
+    <Education />
+    <BeyondCode />
+    <Contact />
+  </main>
+  <Footer />
+</MainLayout>

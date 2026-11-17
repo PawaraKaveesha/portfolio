@@ -1,0 +1,111 @@
+---
+import { profile } from '../data/profile';
+import { socialLinks } from '../data/social';
+
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Expertise', href: '#expertise' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Media', href: '#media' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Leadership', href: '#leadership' },
+  { label: 'Education', href: '#education' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<footer class="border-t border-white/10 bg-brand-bg py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto space-y-12">
+    <!-- Top Footer: Brand, Statement, Navigation -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <!-- Brand & Positioning (6 cols) -->
+      <div class="md:col-span-6 space-y-4">
+        <a href="#" class="inline-flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-center font-display font-extrabold text-white text-base group-hover:border-brand-blue group-hover:shadow-glow-blue transition-all">
+            PK
+          </div>
+          <span class="text-xl font-bold font-display text-white">
+            {profile.name}
+          </span>
+        </a>
+
+        <p class="text-sm font-medium text-white/90">
+          "{profile.tagline}"
+        </p>
+
+        <p class="text-xs text-brand-muted max-w-md leading-relaxed font-mono">
+          Final-Year Computer Networks Undergraduate • Software Developer • Digital Media Specialist
+        </p>
+      </div>
+
+      <!-- Quick Nav Links (3 cols) -->
+      <div class="md:col-span-3 space-y-3">
+        <p class="text-xs font-mono uppercase tracking-wider text-brand-blue">
+          Navigation
+        </p>
+        <ul class="space-y-2 text-xs">
+          {navLinks.map((item) => (
+            <li>
+              <a href={item.href} class="text-brand-muted hover:text-white transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- External Profiles & Channels (3 cols) -->
+      <div class="md:col-span-3 space-y-3">
+        <p class="text-xs font-mono uppercase tracking-wider text-brand-orange">
+          Verified Profiles
+        </p>
+        <ul class="space-y-2 text-xs">
+          <li>
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-blue transition-colors">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-white transition-colors">
+              GitHub Profile
+            </a>
+          </li>
+          <li>
+            <a href={socialLinks.youtube.channel19} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-orange transition-colors">
+              Channel 19 (YouTube)
+            </a>
+          </li>
+          <li>
+            <a href={socialLinks.tiktok.techHttpLk} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-cyan-400 transition-colors">
+              Tech HTTP LK (TikTok)
+            </a>
+          </li>
+          <li>
+            <a href={socialLinks.orendaLive} target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-orange transition-colors">
+              Orenda Resort Live
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-brand-muted">
+      <p>
+        © {currentYear} {profile.name}. All rights reserved. Built with Astro &amp; TypeScript.
+      </p>
+
+      <a
+        href="#"
+        class="inline-flex items-center gap-1.5 text-brand-muted hover:text-white transition-colors"
+      >
+        <span>Back to Top</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,108 @@
+---
+import { experiences } from '../data/experience';
+---
+
+<section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 relative bg-brand-bg">
+  <div class="max-w-7xl mx-auto space-y-16">
+    <!-- Header -->
+    <div class="reveal-on-scroll max-w-3xl space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-xs font-mono text-brand-blue">
+        <span>05</span>
+        <span>//</span>
+        <span>PRACTICAL EXPERIENCE</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white tracking-tight">
+        Learning through real-world execution.
+      </h2>
+      <p class="text-brand-muted text-base sm:text-lg leading-relaxed">
+        Real-world experience across IT support, web development, studio media production, and digital solutions.
+      </p>
+    </div>
+
+    <!-- Timeline Experience Cards -->
+    <div class="relative border-l border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-12">
+      {
+        experiences.map((exp, idx) => (
+          <div class="reveal-on-scroll relative group" style={`transition-delay: ${idx * 100}ms;`}>
+            <!-- Node dot on timeline -->
+            <div
+              class={`absolute -left-[31px] sm:-left-[47px] top-6 w-4 h-4 rounded-full border-4 border-brand-bg transition-transform duration-300 group-hover:scale-125 ${
+                exp.accent === 'orange' ? 'bg-brand-orange shadow-glow-orange' : 'bg-brand-blue shadow-glow-blue'
+              }`}
+            ></div>
+
+            <!-- Experience Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-white/20">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/5">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span
+                      class={`px-2.5 py-0.5 rounded-full text-xs font-mono font-medium ${
+                        exp.accent === 'orange'
+                          ? 'bg-brand-orange/15 text-brand-orange border border-brand-orange/30'
+                          : 'bg-brand-blue/15 text-brand-blue border border-brand-blue/30'
+                      }`}
+                    >
+                      {exp.type}
+                    </span>
+                    <span class="text-xs font-mono text-brand-muted">• {exp.period}</span>
+                  </div>
+                  <h3 class="text-xl sm:text-2xl font-bold font-display text-white">
+                    {exp.role}
+                  </h3>
+                  <p class="text-sm font-medium text-brand-muted">
+                    {exp.organization} — <span class="text-white/60">{exp.location}</span>
+                  </p>
+                </div>
+
+                {exp.link && (
+                  <a
+                    href={exp.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-brand-surface border border-white/10 text-xs font-medium text-brand-muted hover:text-white hover:border-white/25 transition-colors self-start sm:self-center"
+                  >
+                    <span>{exp.linkLabel || 'Visit Website'}</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </a>
+                )}
+              </div>
+
+              <p class="text-sm text-brand-text leading-relaxed">
+                {exp.summary}
+              </p>
+
+              <!-- Key Highlights -->
+              <div class="space-y-2">
+                <p class="text-xs font-mono uppercase tracking-wider text-brand-muted">
+                  Key Responsibilities &amp; Execution:
+                </p>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs sm:text-sm text-brand-muted">
+                  {exp.highlights.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <span class={`font-bold ${exp.accent === 'orange' ? 'text-brand-orange' : 'text-brand-blue'}`}>
+                        ▹
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Skills tags -->
+              <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                {exp.skills.map((skill) => (
+                  <span class="px-2.5 py-1 rounded text-xs font-mono bg-brand-surface text-brand-muted border border-white/5">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

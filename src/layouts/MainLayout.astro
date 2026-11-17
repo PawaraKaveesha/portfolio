@@ -1,0 +1,223 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = `${profile.name} — ${profile.positioning}`,
+  description = profile.heroDescription,
+  image = '/images/profile/pawara-avatar.svg',
+  canonical = 'https://pawarakaveesha.com',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth bg-brand-bg text-brand-text">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#080B12" />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <meta
+      name="keywords"
+      content="Pawara Kaveesha, Computer Networks, Software Developer, Cybersecurity, Network Automation, Python, Media Production, Video Editor, NSBM, Plymouth, Sri Lanka"
+    />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="Pawara Kaveesha Portfolio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-brand-bg text-brand-text min-h-screen selection:bg-brand-blue/30 selection:text-white relative">
+    <!-- Top Scroll Progress Bar -->
+    <div
+      id="scroll-progress"
+      class="fixed top-0 left-0 h-[2.5px] bg-gradient-to-r from-brand-blue via-sky-400 to-brand-orange z-[100] transition-all duration-75 ease-out"
+      style="width: 0%"
+      aria-hidden="true"
+    ></div>
+
+    <slot />
+
+    <!-- Floating Back to Top Button -->
+    <button
+      id="back-to-top"
+      type="button"
+      aria-label="Back to top of page"
+      class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-brand-card/90 backdrop-blur-md border border-white/10 text-brand-muted hover:text-brand-blue hover:border-brand-blue/40 shadow-xl transition-all duration-300 opacity-0 pointer-events-none translate-y-4"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+
+    <!-- Global Project Case Study Modal -->
+    <div
+      id="project-modal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div id="modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"></div>
+      <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-brand-card border border-white/15 p-6 sm:p-8 shadow-2xl z-10">
+        <!-- Close button -->
+        <button
+          id="modal-close"
+          type="button"
+          aria-label="Close project modal"
+          class="absolute top-5 right-5 p-2 rounded-lg bg-brand-surface text-brand-muted hover:text-white hover:bg-brand-elevated transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <!-- Modal Content -->
+        <div class="space-y-6">
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <span id="modal-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-blue/15 text-brand-blue border border-brand-blue/30">
+                Project
+              </span>
+            </div>
+            <h3 id="modal-title" class="text-2xl sm:text-3xl font-bold text-white font-display">
+              Project Title
+            </h3>
+            <p id="modal-subtitle" class="text-brand-muted text-sm mt-1">
+              Project Subtitle
+            </p>
+          </div>
+
+          <!-- Image / Diagram Preview -->
+          <div class="relative rounded-xl overflow-hidden border border-white/10 bg-brand-bg max-h-72 flex items-center justify-center">
+            <img id="modal-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Project Preview" class="w-full h-auto object-contain max-h-72" />
+          </div>
+
+          <div>
+            <h4 class="text-xs uppercase font-mono text-brand-blue tracking-wider mb-2">Project Overview</h4>
+            <p id="modal-overview" class="text-brand-text text-sm sm:text-base leading-relaxed">
+              Overview description...
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-xs uppercase font-mono text-brand-blue tracking-wider mb-2">Key Highlights & Architecture</h4>
+            <ul id="modal-features" class="space-y-2">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-white/10">
+            <div>
+              <h4 class="text-xs uppercase font-mono text-brand-muted tracking-wider mb-1">My Role</h4>
+              <p id="modal-role" class="text-sm font-medium text-white">Researcher & Developer</p>
+            </div>
+            <div>
+              <h4 class="text-xs uppercase font-mono text-brand-muted tracking-wider mb-2">Tech Stack</h4>
+              <div id="modal-tech" class="flex flex-wrap gap-1.5">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Links -->
+          <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-white/10">
+            <a
+              id="modal-github"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-surface hover:bg-brand-elevated border border-white/10 text-white text-xs font-semibold transition-all hover:border-brand-blue/40"
+            >
+              <svg class="w-4 h-4 text-brand-blue" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+              </svg>
+              <span>View GitHub Repository</span>
+            </a>
+
+            <a
+              id="modal-live"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-brand-blue hover:bg-blue-600 text-white text-xs font-semibold transition-all shadow-glow-blue"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+              <span>Explore Live Application</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Video Preview Modal -->
+    <div
+      id="video-modal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="video-modal-title"
+    >
+      <div id="video-modal-backdrop" class="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"></div>
+      <div class="relative w-full max-w-4xl rounded-2xl bg-brand-card border border-white/15 p-4 sm:p-6 shadow-2xl z-10">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+          <h3 id="video-modal-title" class="text-base sm:text-lg font-semibold text-white truncate pr-4">
+            Video Preview
+          </h3>
+          <button
+            id="video-modal-close"
+            type="button"
+            aria-label="Close video preview"
+            class="p-2 rounded-lg bg-brand-surface text-brand-muted hover:text-white transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-white/10">
+          <iframe
+            id="video-frame"
+            class="w-full h-full"
+            src=""
+            title="Video Preview Player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Scripts -->
+    <script src="../scripts/interactions.ts"></script>
+  </body>
+</html>

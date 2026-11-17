@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pawarakaveesha.com/sitemap-index.xml
